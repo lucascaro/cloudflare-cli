@@ -42,7 +42,6 @@ def purge(zone, files, input):
         files = input.read().splitlines()
         cf.purge_files(zone_id, zone_name, files)
 
-
 @cli.group()
 def zone():
     '''Interact with zones'''

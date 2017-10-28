@@ -4,7 +4,13 @@ Simple Cloudflare CLI to help with common tasks.
 
 ## Installation
 
-Clone this repository and install with pipenv.
+Install with pip:
+
+```bash
+pip install cfcli
+```
+
+Alternatively, clone this repository and install with pipenv.
 
 
 ## Usage
