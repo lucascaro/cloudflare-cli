@@ -1,14 +1,20 @@
 language: python
 python:
-  - "3.6"
-  - "3.6-dev" # 3.6 development branch
-  - "3.7-dev" # 3.7 development branch
-  - "nightly"
-# command to install dependencies
+- '3.6'
+- 3.6-dev
+- 3.7-dev
+- nightly
 install:
-  - pip install pipenv
-  - pipenv install --dev
-  - python setup.py develop
-# command to run tests
+- pip install pipenv
+- pipenv install --dev
+- python setup.py develop
 script:
-  - pytest # or py.test for Python versions 3.5 and below
+- pytest
+deploy:
+  provider: pypi
+  user: lucascaro
+  password:
+    secure: QaEK5mRQ4KHygUPk6p/arVa53PD5WAuEk7xwaZy7SY42/mrmd7cpI0h1H0UHBYsgLg5PVUV/eJ59xkZzoPJVb04+sALs+SyuHutgkg/EH9ohvv8IE9KEVMKfsM8FMGe1Xmf7Pqs2D9jIAghAdDUHFfsneIiV66DaICmik78/wqCCXxp9IgMkacikfaoYx0beWGeqAExx7uZBD0i1XNNEXHkKilJ99pmNKghx07SffDcQyQZEn5DcwWUWQaJG/k64y9VFNXeO7XpKdnUcUOrAOM/WTwcag4to7Byt4bZm0EAl7eQSzLquAFdOhxjZG4fimiDFb12TUcb5IKirdtjEKx5mgSKVWRpU4RdrlrXW/LBhR/hsUYJCXt14bRAe09DpYWcmsGu6owvFshWGOZOvRdgxSiWlklvAtYx25YiXo+zD2u5xeYQkK+XrHu6nj1Ub4Jf5qEzj4u+sLqIM2fkAHWGuc3usKF7XnnNUDzlp83MsUChbjiXdhcjMFKFv+0a6tC/wj4gYNT65zmQnpdzTIIKwLk8gYSTfnIhh71yJ+rnpK1y8UcPO0xc7peRzHDGE0WZ9h3QDjybiksfMSgv0ImlX8+/W1wR/+Ti4aZBW7RMGUBdwLjAKpBICroGTsCprMtY3U1MM1GaLyPW1z/SDz18HcLDscwWH92jfMWiysfk=
+  on:
+    tags: true
+    branch: master
