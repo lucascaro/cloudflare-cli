@@ -7,6 +7,8 @@ import CloudFlare
 
 def get_zone_id(ctx, param, zone_name):
     """Return the id for a zone by name."""
+    del ctx #unused
+    del param #unused
     cf = CloudFlare.CloudFlare()
     zones = cf.zones.get(params={'name': zone_name})
     if len(zones) != 1:
@@ -24,11 +26,6 @@ def get_all_zones():
         raw_results = cf.zones.get(params={'per_page':100, 'page':page_number})
         zones = raw_results['result']
         all_zones += zones
-        for zone in zones:
-            zone_id = zone['id']
-            zone_name = zone['name']
-            print(zone_id, zone_name)
-
         total_pages = raw_results['result_info']['total_pages']
     return all_zones
 
