@@ -1,8 +1,12 @@
+"""
+Cloudflare helper.
+"""
 import click
 import CloudFlare
 
 
 def get_zone_id(ctx, param, zone_name):
+    """Return the id for a zone by name."""
     cf = CloudFlare.CloudFlare()
     zones = cf.zones.get(params={'name': zone_name})
     if len(zones) != 1:
@@ -10,6 +14,7 @@ def get_zone_id(ctx, param, zone_name):
     return (zones[0]['id'], zones[0]['name'])
 
 def get_all_zones():
+    """Return a list of all available zones."""
     cf = CloudFlare.CloudFlare(raw=True)
     page_number = 0
     total_pages = 1
@@ -28,17 +33,21 @@ def get_all_zones():
     return all_zones
 
 def purge_all(zone_id):
+    """Purge all cache for a zone id."""
     cf = CloudFlare.CloudFlare()
     return cf.zones.purge_cache.delete(zone_id, data={'purge_everything': True})
 
 
 def normalize_urls(zone_name, files):
+    """Return a function that builds absolute URLs."""
     def normalize_url(url):
+        """Prepend the zone name if the url is not absolute."""
         if not url.startswith('http://') or not url.startswith('https://'):
             return 'https://{}/{}'.format(zone_name, url.replace('/', ''))
     return list(map(normalize_url, files))
 
 def purge_files(zone_id, zone_name, files):
+    """Purge specific URLs in a zone id."""
     cf = CloudFlare.CloudFlare()
     urls = normalize_urls(zone_name, files)
     click.echo(urls)
