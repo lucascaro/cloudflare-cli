@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name="cfcli",
     description="Cloudflare CLI is a simple command-line interface for cloudflare",
-    version='0.0.3',
+    version='0.0.4',
     url='https://github.com/lucascaro/cloudflare-cli',
     author='Lucas Caro',
     author_email='lucascaro@gmail.com',
