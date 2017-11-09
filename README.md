@@ -1,4 +1,4 @@
-# Cloudflare CLI
+# Cloudflare CLI [![Build Status](https://travis-ci.org/lucascaro/cloudflare-cli.svg?branch=master)](https://travis-ci.org/lucascaro/cloudflare-cli)
 
 Simple Cloudflare CLI to help with common tasks.
 
