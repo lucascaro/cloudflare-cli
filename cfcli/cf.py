@@ -39,7 +39,7 @@ def normalize_urls(zone_name, files):
     """Return a function that builds absolute URLs."""
     def normalize_url(url):
         """Prepend the zone name if the url is not absolute."""
-        print(url)
+        # print(url)
         if not url.startswith('http://') and not url.startswith('https://'):
             return 'https://{}/{}'.format(zone_name, url.replace('//', '/'))
         return url
@@ -50,4 +50,4 @@ def purge_files(zone_id, zone_name, files):
     cf = CloudFlare.CloudFlare()
     urls = normalize_urls(zone_name, files)
     click.echo(urls)
-    # return cf.zones.purge_cache.delete(zone_id, data={'files': urls})
+    return cf.zones.purge_cache.delete(zone_id, data={'files': urls})
